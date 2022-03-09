@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+
+<!-- URL to the part 1 : https://popfest-in-the-castle-part1.netlify.app  -->
+<!-- URL to the part 2 : https://popfest-in-the-castle-part2.netlify.app  -->
+<head>
+
+    <title>PopFest in the castle</title>
+
+        <!-- meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta lang="en-US">
+    <meta name="keywords" content="Festival">
+    <meta name="author" content="Hadari Dávid">
+
+        <!-- css file(s) -->
+    <link rel="stylesheet" href="popfest.css">
+        <!-- JS file(s) -->
+    <script src="mediaplayer.js"></script>
+    <script src="faq.js"></script>
+    <script src="vip.js"></script>
+ 
+
+    
+
+</head>
+
+ 
+<body onload="load();" > 
+<div id="container" >
+
+    <!-- background and container for the menu -->
+    <div id="menuContainer">
+
+        <h1 id="menutitle">menu</h1>
+            <hr>   
+
+            <div class="vertical-menu">
+                    <a href="#frontpage" class="menupages">Frontpage</a>
+                    <a href="#concert_schedule" class="menupages">Concert schedule</a>
+                    <a href="#testimonials" class="menupages">Testimonials</a>
+                       <a href="#VIP" class="menupages">VIP</a>  
+                    <a href="#FAQ" class="menupages">FAQ</a> 
+                  
+            </div>
+
+            <button id="ticket" onclick="">I want a ticket!</button>
+
+    </div>
+
+    <!--menu close button-->
+    <button class="menuButton" id="menuclose" onclick="shrink();">
+       <img src="icons/ionicons/chevron-back.svg" class="menuIcon">
+    </button>
+
+
+
+
+    <h1>PopFest in the castle</h1>
+
+
+  
+
+
+
+    <!-- a button that will call our menu -->
+    <button class="menuButton" id="mOpen" onclick="reveal();">
+        <img src="icons/ionicons/chevron-forward.svg" class="menuIcon" >
+    </button>
+
+                            <!-- Javascript controlling the menu (not external because its a "small" code) -->
+                            <script>
+                                    function reveal(){
+                                        menucontainer = document.getElementById("menuContainer");
+                                        menuclose = document.getElementById("menuclose");
+
+                                        menucontainer.style.opacity ='1';
+                                        menucontainer.style.width = '33%'; 
+                                        menuclose.style.width = '35px';
+                                        menuclose.style.opacity = '1';
+                                        menuclose.style.margin = '7.5% 0% 0% 33%';
+                                        menuclose.style.zIndex = '4';
+
+                                        ticket = document.getElementById("ticket").style.display="unset";
+                                        menupoint = document.querySelectorAll(".menupages").forEach(a=>a.style.display = "block");
+
+                                    }
+
+                                    function shrink(){
+                                        menucontainer = document.getElementById("menuContainer");
+                                        menuclose = document.getElementById("menuclose");
+                                       
+                                        menucontainer.style.opacity ='0';
+                                        menucontainer.style.width = '0%';
+
+                                        menuclose.style.zIndex = '1';
+                                        menuclose.style.opacity = '0';
+                                        menuclose.style.margin = '7.5% 0% 0% 0%';
+
+                                        ticket = document.getElementById("ticket").style.display="none";
+                                        menupoint = document.querySelectorAll(".menupages").forEach(a=>a.style.display = "none");
+                                    }
+
+                            </script>
+                        
+
+
+    <div class="contentCard" id="frontpage">        <!-- "cards" containing the content/media elements -->
+
+        <div class="content">        <!-- content element go here -->
+            <h2>
+               Hey! Are you hungry for a good festival ?
+            </h2>
+
+            <p>
+               I have great news for you! PopFest is coming!
+               This year's PopFest will be held in 
+            </p>
+
+                <p id="date" class="pink">30.5.2022!</p>
+
+            <p>
+                And not anywhere its in Buda Castle!
+                <br>
+                The Buda Castle Palace is one of the main cultural and tourist centres of Budapest and the former royal palace. 
+                <br>
+                As part of the Buda Castle District, it has been a World Heritage Site of Budapest since 1987. 
+                <br>
+                The Palace Quarter provides an amazing atmospheric setting for the festival.
+            </p>
+
+            <p class="center">
+                Want to know more ? Why don't you go look around <span class="pink">down below!?</span> <br>
+                Or come back at <span class="pink">19.03.2022</span> for the fully released website!
+            </p>
+
+        </div>
+
+
+        <div class="media" >          <!-- media element go here  -->
+
+            <video id="VideoPlayer" playsinline muted preload auto onended="onVideoEnded();" >
+        
+            </video>
+
+        </div>
+
+    </div>
+
+    
+
+
+<div class="contentCard" id="concert_schedule">        <!--content card with the concert schedule-->
+
+        <div class="content">   <!-- content element go here -->
+
+            <h2 id="concertsch">CONCERT SCHEDULE</h2>
+              
+            <p id="artistText" >
+            
+            </p>
+
+            <ul >
+                <li id="1">17:00 Bilderbuch</li>
+                <li id="2">18:00 Wanda</li>
+                <li id="3">19:00 Christina Stürmer</li>
+                <li id="4">20:00 Volbeat</li>
+                <li id="5">21:00 Imagine Dragons</li>
+                <li id="6">22:00 Opus</li>
+            </ul>
+
+        </div>
+
+
+
+        <div class="media" >          <!-- media element -->
+
+            <img id="artist" src="images/artists/bilderbuch.jpg" alt="picture of artist(s)">
+            <h2 id="artistName">Bilderbuch</h2>
+            <button id="left" class="concertButton" onclick="left()"><img src="icons/ionicons/chevron-back.svg" ></button>  <button id="right" class="concertButton" onclick="right()"><img src="icons/ionicons/chevron-forward.svg" ></button>
+
+        </div>
+
+    </div>
+
+
+    <div class="contentCard" id="testimonials">        <!--content card with the concert schedule-->
+
+        <div class="content">        <!-- content element go here // the pharagraphs will be filled later by a script--> 
+            <h2>
+               TESTIMONIALS
+            </h2>
+
+            <p id="opinion1" class="opinion">
+
+            </p>
+
+            <p id="participant1" class="pink" class="participant">
+
+            </p>
+
+                <br><br>
+            
+            <p id="opinion2" class="opinion">
+    
+            </p>
+
+            <p id="participant2" class="pink"  class="participant">
+
+            </p>
+
+        </div>
+
+                        <!-- testimonial automata changer-->
+                                <script>
+                                changeOpinion();
+                                setInterval(changeOpinion, 6000);   // time interval of the changes
+                                    
+                                    // if the "page" is 1 show the opinion connected to that 
+                                    var opinionPage = 1;
+
+                                    function changeOpinion(){
+                                        if (opinionPage == 1) {
+                                            document.getElementById("opinion1").innerHTML = "The PopFest in the Castle Experience was nothing short of amazing. The joy from the stage was infectious. In all my years of booking concerts, none has caused a more emphatically enthusiastic response. It was off the charts!";
+                                            document.getElementById("participant1").innerHTML ="-Bill Deasy";
+
+                                            document.getElementById("opinion2").innerHTML ="Thanks again for another wonderful PopFest in the Castle! It really gets better every year. It is the best music festival in the world and I am glad I am a part of it.";
+                                            document.getElementById("participant2").innerHTML="- Mona Steinbauer";
+
+                                            opinionPage = 2;
+                                        } else {
+                                            document.getElementById("opinion1").innerHTML = "Wow! Such a delightful fun evening last Saturday. The bands were excellent and the programme perfect! We’ll look forward to the next one.";
+                                            document.getElementById("participant1").innerHTML ="- David Reaney";
+
+                                            document.getElementById("opinion2").innerHTML ="I can’t overstate how much fun PopFest in the Castle was. Friends, great music, scenery, late night party. Wow! So glad to be there!";
+                                            document.getElementById("participant2").innerHTML="-Christian Baumgartner";
+
+                                            opinionPage = 1;
+                                        }
+
+
+
+                                    }
+                                </script>
+
+
+        <div class="media" >          <!-- media element go here  -->
+
+            <video id="VideoPlayer2" playsinline muted preload auto onended="onVideoEnded();" >
+        
+            </video>
+
+        </div>
+
+    </div>
+
+<!--//////////////////////////////////////////////////////////////////      VIP SEATS           //////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+
+    <div class="contentCard" id="VIP">        <!--VIP SEATS-->
+
+        <br>
+        <h2>VIP members</h2>
+        <sup class="orange">Update the table by uploading a file</sup>
+        <br>
+        <button class="sideVipbutton" id="fullscreen"><img src="icons/ionicons/expand.svg" class="menuIcon" alt="fullscreen" title="fullscreen"></button>
+        <button class="sideVipbutton" id="copy"><img src="icons/ionicons/copy.svg" class="menuIcon" alt="copy" title="copy" ></button> 
+        <button class="sideVipbutton" id="download" onclick="save()"> <img src="icons/ionicons/download.svg" class="menuIcon" alt="download" title="download" ></button>
+
+
+        <table id="viptable">
+
+            <tr class="vipRow" id="vipRow1">
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t1"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t2"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t3"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t4"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t5"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t6"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t7"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t8"></p></div>
+                </td>
+
+            </tr>
+            <tr class="vipRow">
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t9"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t10"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t11"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t12"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t13"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t14"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t15"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t16"></p></div>
+                </td>
+
+            </tr>
+            <tr class="vipRow">
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t17"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t18"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange"id="t19"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t20"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t21"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t22"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t23"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t24"></p></div>
+                </td>
+
+            </tr>
+             <tr class="vipRow">
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t25"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t26"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t27"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t28"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t29"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t30"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t31"></p></div>
+                </td>
+                <td>
+                    <div draggable="true" class="box"><p class="orange" id="t32"></p></div>
+                </td>
+
+            </tr>
+
+        </table>  
+
+       
+
+
+       <button class="vipButton" onclick="sample()">load sample</button>  <button class="vipButton">load last year's VIP members</button> 
+
+       <div id="drop-area">
+        <form class="my-form">
+          <p>Upload the file witch is containing the list of VIP members by manual select below , or drag to the highlighted area <br>
+           <span class="orange"> first line "#VIP" and the rest is the VIP member names line by line "- name" !</span>
+          </p>
+          <input type="file" id="fileElem" onchange="handleFiles(this.files)">
+          <label class="VIPbutton" for="fileElem">Select some files</label>
+        </form>
+      </div>
+      <p id="output"></p>
+
+    </div>
+    
+
+        <script>
+            
+            var file = document.getElementById('fileElem');
+
+            var cell = 1;
+
+
+            //regular file upload on button 
+            file.onchange = function(){
+                var file = this.files[0];
+                var reader = new FileReader();
+            
+                reader.onload = function(progressEvent){    
+                    var allrows = this.result.split('\n');
+                    for(var row = 1; row < allrows.length; row++){
+                     var text = allrows[row];
+
+                     let textArray = text.split(" ");
+                     var correctText = textArray[1];
+                     
+                        for( var i = 0 ; i < 8 ; i++){
+                            document.getElementById("t" + cell).innerHTML = correctText;
+                            
+                        }
+                    cell++;
+
+                    }
+                };
+               
+                reader.readAsText(file);
+                };
+
+
+
+
+            //drag and drop 
+            
+        let dropArea = document.getElementById('drop-area');
+
+//giving events
+        ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false)
+        })
+
+        // preventing the default drag and drop function
+        function preventDefaults (e) {
+        e.preventDefault()
+        e.stopPropagation()
+        }
+
+        ;['dragenter', 'dragover'].forEach(eventName => {
+        dropArea.addEventListener(eventName, highlight, false)
+        })
+
+        ;['dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, unhighlight, false)
+        })
+
+        function highlight(e) {
+        dropArea.classList.add('highlight')
+        }
+
+        function unhighlight(e) {
+        dropArea.classList.remove('highlight')
+        }
+
+
+
+
+        dropArea.addEventListener('drop', handleDrop, false)
+
+
+       
+        
+
+        //controlling what will happen on dropping file in the area
+        function handleDrop(e) {
+        let file = e.dataTransfer.files
+        
+
+        handleFiles(file);
+
+        }
+
+        function handleFiles(files) {
+        files = [...files]
+        files.forEach(uploadFile)
+ 
+        }
+
+        function uploadFile(file) {
+                var reader = new FileReader();
+            
+                reader.onload = function(progressEvent){    
+                    var allrows = this.result.split('\n');
+                    for(var row = 1; row < allrows.length; row++){
+                     var text = allrows[row];
+
+                     let textArray = text.split(" ");
+                     var correctText = textArray[1];
+                     
+                        for( var i = 0 ; i < 8 ; i++){
+                            document.getElementById("t" + cell).innerHTML = correctText;
+                            
+                        }
+                    cell++;
+
+                    }
+                };
+
+               
+                reader.readAsText(file);
+
+        }
+
+     
+
+
+               
+        
+        </script>
+
+
+<!--///////////////////////////////////////////////////////////////////      VIP SEATS           /////////////////////////////////////////////////////////////////////////////////////////-->
+
+    
+<div class="contentCard" id="FAQ">        <!--card containing frequently asked questions FAQ-->
+
+    <div class="content" >   
+
+        <h2>FAQ</h2>
+
+        <p id="Q1" class="FAQ" onclick="q1();">
+            What is PopFest in the Castle?
+        </p>
+        <p id="Q2" class="FAQ" onclick="q2();">
+            When does PopFest in the Castle take place?
+        </p>
+        <p id="Q3" class="FAQ" onclick="q3();">
+            What is the age minimum?
+        </p>
+        <p id="Q4" class="FAQ" onclick="q4();">
+            Can I pay by credit card?
+        </p>
+        <p id="Q5" class="FAQ" onclick="q5();">
+            What is the golden circle?
+        </p>
+        <p id="Q6" class="FAQ" onclick="q6();">
+            Are there wheelchair spaces?
+        </p>
+        <p id="Q7" class="FAQ" onclick="q7();">
+            Can I resale my ticket if I cannot go?
+        </p>
+
+      
+    </div>
+
+
+    <div class="media" >   <!-- no media element in this card because it wont fit the style (in my oppinion at least) the FAQ answer instead-->       
+
+        <p id="question">
+
+        </p>
+
+        <p id="answer">
+
+        </p>
+
+    </div>
+
+</div>
+
+
+                                        <!--icons on the bottom of the page-->
+    <div id="icons">
+        <a href="https://www.facebook.com/" target="blank">
+            <div class="iconBg"> 
+                <img class="icon" src="icons/socialMediaIcons/036-facebook.svg" alt="facebook icon"/> 
+            </div>
+        </a>
+
+        <a href="https://www.instagram.com/" target="blank">
+            <div class="iconBg"> 
+                <img class="icon" src="icons/socialMediaIcons/029-instagram.svg" alt="instagram icon"/>
+            </div>
+       </a>
+
+        <a href="https://hu.pinterest.com/" target="blank">
+            <div class="iconBg"> 
+                <img class="icon" src="icons/socialMediaIcons/021-pinterest.svg" alt="pinterest icon"/>
+            </div>
+        </a>
+
+        <a href="https://twitter.com/?lang=hu" target="blank">
+            <div class="iconBg">
+                <img class="icon" src="icons/socialMediaIcons/008-twitter.svg" alt="tumblr icon"/>
+            </div>
+        </a>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</body>
+</html>
